@@ -1,0 +1,68 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="container d-flex flex-column my-3">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">ชื่อผู้ใช้งาน</label>
+                    <input class="form-control" type="text" formControlName="username" [(ngModel)]="myProperty">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">รหัสผ่าน</label>
+                    <input class="form-control" type="password" formControlName="password">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="my-3 btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">เข้าสู่ระบบ</button>
+        <div class="text-center">
+            <div *ngIf="this.ResData.response_code == 40001">
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">แจ้งเตือน</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h3>{{this.ResData.response_data}}</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="this.ResData.response_code == 20000">
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">แจ้งเตือน</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h3>{{myProperty + this.ResData.response_data}}</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
